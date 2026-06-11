@@ -69,11 +69,8 @@ todo-app
 │   ├── controller
 │   ├── service
 │   ├── repository
-│   ├── entity
-│   ├── dto
-│   ├── security
+│   ├── model
 │   ├── config
-│   └── exception
 │
 └── database
 ```
@@ -85,7 +82,7 @@ todo-app
 | Field    | Type   |
 | -------- | ------ |
 | id       | Long   |
-| name     | String |
+| username | String |
 | email    | String |
 | password | String |
 
