@@ -1,8 +1,10 @@
 package com.shin.MiniList.repo;
 
-import com.shin.MiniList.model.User;
+import com.shin.MiniList.model.Users;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
-public interface UserRepo extends JpaRepository<User, Integer> {
-    User findByUsername(String username);
+@Repository
+public interface UserRepo extends JpaRepository<Users, Integer> {
+    Users findByUsername(String username);
 }
