@@ -16,6 +16,7 @@ public class AuthController {
 
     @PostMapping("/register")
     public Users register(@RequestBody Users users) {
+        System.out.println("REGISTER HIT: " + users.getUsername());
         return service.register(users);
     }
 
