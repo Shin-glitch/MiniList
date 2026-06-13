@@ -4,7 +4,6 @@ import com.shin.MiniList.model.Todo;
 import com.shin.MiniList.model.Users;
 import com.shin.MiniList.repo.TodoRepo;
 import com.shin.MiniList.repo.UserRepo;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
