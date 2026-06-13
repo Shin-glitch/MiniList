@@ -4,9 +4,7 @@ import com.shin.MiniList.model.Todo;
 import com.shin.MiniList.service.TodoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 public class TodoController {
@@ -21,6 +19,11 @@ public class TodoController {
     public Todo addTodo(@RequestBody Todo todo, Authentication authentication) {
         String userName = authentication.getName();
         return service.addTodo(todo, userName);
+    }
+
+    @DeleteMapping("/deleteTodo/{id}")
+    public void deleteTodo(@PathVariable Long id) {
+        service.deleteTodo(id);
     }
 
 }
