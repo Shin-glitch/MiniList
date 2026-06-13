@@ -17,7 +17,7 @@ public class TodoController {
         this.service = service;
     }
 
-    @PostMapping("/addTodo")
+    @PostMapping("/todos")
     public Todo addTodo(@RequestBody Todo todo, Authentication authentication) {
         String userName = authentication.getName();
         return service.addTodo(todo, userName);
@@ -35,13 +35,13 @@ public class TodoController {
         return service.getTodos(userName);
     }
 
-    @PutMapping("/updateTodo/{id}")
+    @PutMapping("/todos/{id}")
     public Todo updateTodo(@PathVariable Long id, @RequestBody Todo todo, Authentication authentication ) {
         String userName = authentication.getName();
         return service.updateTodo(id, todo, userName);
     }
 
-    @DeleteMapping("/deleteTodo/{id}")
+    @DeleteMapping("/todos/{id}")
     public void deleteTodo(@PathVariable Long id, Authentication authentication) {
         String userName = authentication.getName();
         service.deleteTodo(id, userName);
