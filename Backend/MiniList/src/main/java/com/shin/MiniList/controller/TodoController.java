@@ -2,10 +2,8 @@ package com.shin.MiniList.controller;
 
 import com.shin.MiniList.model.Todo;
 import com.shin.MiniList.service.TodoService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
 
 @RestController
