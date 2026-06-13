@@ -7,6 +7,8 @@ import com.shin.MiniList.repo.UserRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class TodoService {
 
@@ -38,6 +40,24 @@ public class TodoService {
         todo1.setUsers(currentUser);
 
         return todoRepo.save(todo1);
+
+    }
+
+    public Todo getTodo(String userName, Long id) {
+        Todo todo = todoRepo.findById(id)
+                .orElseThrow(() -> new RuntimeException("Todo not found"));
+        if (!todo.getUsers().getUsername().equals(userName)) {
+            throw new RuntimeException("Unauthorized");
+        }
+        return todo;
+    }
+
+    public List<Todo> getTodos(String userName) {
+
+        List<Todo> todos = null;
+        todos = todoRepo.findByUsersUsername(userName);
+
+        return todos;
 
     }
 

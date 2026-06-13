@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 public class TodoController {
 
@@ -19,6 +21,18 @@ public class TodoController {
     public Todo addTodo(@RequestBody Todo todo, Authentication authentication) {
         String userName = authentication.getName();
         return service.addTodo(todo, userName);
+    }
+
+    @GetMapping("/todos/{id}")
+    public Todo getTodo(@PathVariable Long id, Authentication authentication) {
+        String userName = authentication.getName();
+        return service.getTodo(userName, id);
+    }
+
+    @GetMapping("/todos")
+    public List<Todo> getTodos(Authentication authentication) {
+        String userName = authentication.getName();
+        return service.getTodos(userName);
     }
 
     @PutMapping("/updateTodo/{id}")
