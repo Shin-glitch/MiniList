@@ -41,7 +41,33 @@ public class TodoService {
 
     }
 
-    public void deleteTodo(Long id) {
-        todoRepo.deleteById(id);
+    public void deleteTodo(Long id, String userName) {
+
+        Todo todo = todoRepo.findById(id)
+                .orElseThrow(() -> new RuntimeException("Todo not found"));
+
+        if(!todo.getUsers().getUsername().equals(userName)) {
+            throw new RuntimeException("unauthorized");
+        }
+        todoRepo.delete(todo);
+    }
+
+    public Todo updateTodo(Long id, Todo todo, String userName) {
+
+        Todo existingTodo = todoRepo.findById(id)
+                .orElseThrow(() -> new RuntimeException("Todo not found"));
+
+        if(!existingTodo.getUsers().getUsername().equals(userName)) {
+            throw new RuntimeException("Unauthorized");
+        }
+
+        existingTodo.setTitle(todo.getTitle());
+        existingTodo.setDescription(todo.getDescription());
+        existingTodo.setPriorityLevel(todo.getPriorityLevel());
+        existingTodo.setStatus(todo.getStatus());
+        existingTodo.setDueDate(todo.getDueDate());
+
+        return todoRepo.save(existingTodo);
+
     }
 }
