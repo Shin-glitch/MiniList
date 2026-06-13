@@ -7,6 +7,8 @@ import com.shin.MiniList.repo.UserRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class TodoService {
 
@@ -41,4 +43,51 @@ public class TodoService {
 
     }
 
+    public Todo getTodo(String userName, Long id) {
+        Todo todo = todoRepo.findById(id)
+                .orElseThrow(() -> new RuntimeException("Todo not found"));
+        if (!todo.getUsers().getUsername().equals(userName)) {
+            throw new RuntimeException("Unauthorized");
+        }
+        return todo;
+    }
+
+    public List<Todo> getTodos(String userName) {
+
+        List<Todo> todos = null;
+        todos = todoRepo.findByUsersUsername(userName);
+
+        return todos;
+
+    }
+
+    public void deleteTodo(Long id, String userName) {
+
+        Todo todo = todoRepo.findById(id)
+                .orElseThrow(() -> new RuntimeException("Todo not found"));
+
+        if(!todo.getUsers().getUsername().equals(userName)) {
+            throw new RuntimeException("unauthorized");
+        }
+        todoRepo.delete(todo);
+    }
+
+    public Todo updateTodo(Long id, Todo todo, String userName) {
+
+        Todo existingTodo = todoRepo.findById(id)
+                .orElseThrow(() -> new RuntimeException("Todo not found"));
+
+        if(!existingTodo.getUsers().getUsername().equals(userName)) {
+            throw new RuntimeException("Unauthorized");
+        }
+
+        existingTodo.setTitle(todo.getTitle());
+        existingTodo.setDescription(todo.getDescription());
+        existingTodo.setPriorityLevel(todo.getPriorityLevel());
+        existingTodo.setStatus(todo.getStatus());
+        existingTodo.setDueDate(todo.getDueDate());
+
+        return todoRepo.save(existingTodo);
+
+    }
 }
