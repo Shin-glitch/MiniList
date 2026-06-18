@@ -1,3 +1,6 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap");
+
 /* RESET */
 
 *,
@@ -12,4 +15,54 @@ img {
     display: block;
     max-width: 100%;
     height: auto;
+}
+
+/* GENERAL STYLES */
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    min-height: 100vh;
+    /* background-color: #1a1a1a; */
+    color: #fafafa;
+    font-family: Montserrat, sans-serif;
+    background-image: url('../assets/images/mountain.avif');
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+header {
+    /* background: #c94f4f;
+    border: 8px solid #000000; */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 80px;
+}
+
+.logo_wrapper {
+    display: flex;
+    justify-content: space-between;
+    gap: 0.25rem;
+    align-items: center;
+    /* border: 3px solid wheat;
+    background: #73d9ca; */
+    margin-left: 3em;
+}
+
+.logo_wrapper__logo img {
+    max-height: 36px;
+}
+
+.logo_wrapper__name {
+    font-size: 1.5em;
+    /* background: #73d9ca;
+    border: 3px solid wheat; */
+}
+
+nav {
+    /* background: #73d9ca;
+    border: 3px solid wheat; */
+    margin-right: 1.6em;
 }
